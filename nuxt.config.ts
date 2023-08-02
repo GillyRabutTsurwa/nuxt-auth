@@ -7,6 +7,9 @@ export default defineNuxtConfig({
             client_ID: process.env.GITHUB_CLIENT_ID,
             client_secret: process.env.GITHUB_CLIENT_SECRET,
         },
+        auth: {
+            secret: process.env.AUTH_SECRET,
+        },
     },
     tailwindcss: {
         cssPath: "~/assets/css/main.css",

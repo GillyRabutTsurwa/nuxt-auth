@@ -4,7 +4,7 @@ const { signIn } = useAuth();
 
 <template>
   <button
-    class="flex items-center border border-gray-500 px-4 py-2 ml-auto mr-auto rounded-lg text-gray-500 text-sm font-medium hover:text-black hover:bg-gray-100"
+    class="flex items-center border border-gray-500 px-4 py-2 mx-auto rounded-lg text-gray-500 text-sm font-medium hover:text-black hover:bg-gray-100"
     @click="signIn('github')">
     <GithubIcon class="mr-4 h-6 w-6" />
     Log in with Github
