@@ -1,19 +1,11 @@
-<script setup lang="ts">
-/**
- * NOTE: 
- * i see. upon inspecting using the nuxt devtools,
- * j'ai découvert que ce middleware vient du package @sidebase/nuxt-auth
- * je comprenais pas parce que je savais pas d'ou il venait, et on a pas écrit de middleware
- */
+<script lang="ts" setup>
 definePageMeta({
-    middleware: "auth" // NOTE: encore une fois, ce middleware est une produit de @sidebase/nuxt-auth
+    middleware: "auth"
 })
 </script>
+
 <template>
-    <div>
-        <h2>Protected Page. Authourised Users Only.</h2>
+    <div class="w-full h-full grid place-items-center">
+        <h2 class="text-2xl font-bold">Private Page / Authourised Users Only</h2>
     </div>
 </template>
-
-
-<style lang="scss" scoped></style>
