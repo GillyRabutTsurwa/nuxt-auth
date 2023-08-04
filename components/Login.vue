@@ -11,6 +11,7 @@
           </h1>
 
           <GithubLogin />
+          <GoogleLogin />
 
           <div class="flex items-center">
             <div class="bg-gray-500 h-[.125rem] w-full"></div>

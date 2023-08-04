@@ -64,6 +64,7 @@ const isLoggedIn = computed(() => status.value === "authenticated");
             </button>
           </li>
           <GithubLogin v-if="!isLoggedIn" />
+          <GoogleLogin v-if="!isLoggedIn" />
         </ul>
       </div>
     </div>

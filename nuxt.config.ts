@@ -7,6 +7,10 @@ export default defineNuxtConfig({
             client_ID: process.env.GITHUB_CLIENT_ID,
             client_secret: process.env.GITHUB_CLIENT_SECRET,
         },
+        google: {
+            client_ID: process.env.GOOGLE_CLIENT_ID,
+            client_secret: process.env.GOOGLE_CLIENT_SECRET,
+        },
         auth: {
             secret: process.env.AUTH_SECRET,
         },

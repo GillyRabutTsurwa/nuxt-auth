@@ -1,6 +1,7 @@
 // file: ~/server/api/auth/[...].ts - NOTE: code copied directly from documentation: https://sidebase.io/nuxt-auth/getting-started/quick-start
 import { NuxtAuthHandler } from "#auth";
 import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 const config = useRuntimeConfig();
@@ -12,6 +13,11 @@ export default NuxtAuthHandler({
         GithubProvider.default({
             clientId: config.github.client_ID,
             clientSecret: config.github.client_secret,
+        }),
+        // @ts-expect-error You need to use .default here for it to work during SSR. May be fixed via Vite at some point
+        GoogleProvider.default({
+            clientId: config.google.client_ID,
+            clientSecret: config.google.client_secret,
         }),
         // @ts-expect-error You need to use .default here for it to work during SSR. May be fixed via Vite at some point
         CredentialsProvider.default({
