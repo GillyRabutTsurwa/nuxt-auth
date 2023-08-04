@@ -12,7 +12,9 @@ const isLoggedIn = computed(() => status.value === "authenticated");
 <template>
   <nav class="border-gray-200 bg-gray-50 dark:bg-gray-900">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <Logo />
+      <div class="w-[40px]">
+        <NuxtAuthIcon />
+      </div>
       <button data-collapse-toggle="navbar-default" type="button"
         class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
         aria-controls="navbar-default" aria-expanded="false">
@@ -47,26 +49,21 @@ const isLoggedIn = computed(() => status.value === "authenticated");
               Private
             </NuxtLink>
           </li>
-          <li v-if="!isLoggedIn">
-            <button
-              class="block py-2 pl-3 pr-4 md:bg-transparent md:hover:text-primary-700 md:p-0 dark:text-white md:dark:text-primary-500"
-              @click="signIn()">
-              Sign In
-            </button>
-          </li>
-          <li v-else>
+          <li v-if="isLoggedIn">
             <button
               class="block py-2 pl-3 pr-4 md:bg-transparent md:hover:text-primary-700 md:p-0 dark:text-white md:dark:text-primary-500"
               @click="signOut()">
               Sign Out
             </button>
           </li>
-
-          <li>
-            <span>Status:</span>
-            <span>&nbsp;</span>
-            <span class="capitalize">{{ status }}</span>
+          <li v-else>
+            <button
+              class="block py-2 pl-3 pr-4 md:bg-transparent md:hover:text-primary-700 md:p-0 dark:text-white md:dark:text-primary-500"
+              @click="signIn()">
+              Sign In
+            </button>
           </li>
+          <GithubLogin v-if="!isLoggedIn" />
         </ul>
       </div>
     </div>
