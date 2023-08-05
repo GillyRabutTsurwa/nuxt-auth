@@ -1,12 +1,17 @@
 <script lang="ts" setup>
+const { data: providers } = await useFetch("/api/auth/providers");
 const { status, signIn, signOut } = useAuth();
-/**
- * NOTE:
- * using this exact same code elsewhere
- * mais pour apprendre, il me faut pas créer une fonction de composable,
- * mais si j'ai envie de le faire plus tard, je vais le faire
- */
-const isLoggedIn = computed(() => status.value === "authenticated"); 
+const isLoggedIn = computed(() => status.value === "authenticated");
+const oauthProviders = computed(() => {
+  const providersObj: any = providers.value;
+  for (const property in providersObj) {
+    // NOTE: using this same code in Login.vue
+    if (providersObj[property].type === "credentials") {
+      delete providersObj[property];
+    }
+  }
+  return providersObj;
+})
 </script>
 
 <template>
@@ -63,10 +68,18 @@ const isLoggedIn = computed(() => status.value === "authenticated");
               Sign In
             </button>
           </li>
-          <GithubLogin v-if="!isLoggedIn" />
-          <GoogleLogin v-if="!isLoggedIn" />
+          <li v-if="!isLoggedIn" class="flex justify-between">
+            <Provider v-for="(currentProvider, property) in oauthProviders" :key="property" :id="currentProvider.id"
+              :name="currentProvider.name" />
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 </template>
+
+<style>
+div li:last-child>* {
+  margin-right: 32px;
+}
+</style>
