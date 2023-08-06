@@ -1,6 +1,5 @@
 // file: ~/server/api/auth/[...].ts - NOTE: code copied directly from documentation: https://sidebase.io/nuxt-auth/getting-started/quick-start
 import { NuxtAuthHandler } from "#auth";
-import { databaseConnect } from "../../database/mongo";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -26,14 +25,16 @@ export default NuxtAuthHandler({
             name: "credentials",
             authorize: async (credentials: any) => {
                 console.log("Credentials", credentials);
-                await databaseConnect();
                 const users = await User.find();
                 console.log("Users", users);
+                /**
+                 * NOTE: if the form data matches with a user data that exists (likely in a database), authenticated the user via return
+                 * the mongo query below is does the same thing as
+                 * if (credentials?.email === user.email && credentials.password === user.password) return user;
+                 * only thing is, we are comparing the form data to an existing user in the database, as this should be protocol
+                 */
                 const user = await User.findOne({ email: credentials?.email, password: credentials.password });
-                // NOTE: if the form data matches with a user data that exists (likely in a database), authenticated the user via return
-                // if (credentials?.email === user.email && credentials.password === user.password) return user;
                 return user;
-                // NOTE: all above code works
             },
         }),
     ],

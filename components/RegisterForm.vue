@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { signIn } = useAuth();
 interface Form {
     email: string;
     password: string
@@ -18,6 +19,18 @@ const userFormSubmit = async (): Promise<void> => {
         }
     });
     console.log(user.value);
+    if (user.value) {
+        console.log("registration success");
+        await signIn("credentials", {
+            email: user.value?.email,
+            password: user.value?.password
+        });
+    }
+    else {
+        console.log("registration failure");
+    }
+    form.email = "";
+    form.password = "";
 }
 </script>
 
