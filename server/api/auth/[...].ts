@@ -24,8 +24,8 @@ export default NuxtAuthHandler({
         // @ts-expect-error You need to use .default here for it to work during SSR. May be fixed via Vite at some point
         CredentialsProvider.default({
             name: "credentials",
-            async authorize(credentials: any) {
-                console.log(credentials);
+            authorize: async (credentials: any) => {
+                console.log("Credentials", credentials);
                 await databaseConnect();
                 const users = await User.find();
                 console.log("Users", users);
@@ -39,10 +39,13 @@ export default NuxtAuthHandler({
     ],
     callbacks: {
         session: async ({ session }) => {
-            // console.log(session);
+            console.log("Session", session);
             return session;
         },
+        // NOTE: useful, but i have no use for this right now
+        // this would be good for adding oauth providers to the database
         // signIn: async ({ profile }) => {
+        //     console.log(profile);
         //     try {
         //         await databaseConnect();
         //         const userExist = await User.findOne({ email: profile?.email });

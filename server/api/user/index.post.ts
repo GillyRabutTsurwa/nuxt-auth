@@ -21,9 +21,10 @@ export default defineEventHandler(async (event: H3Event) => {
     });
     try {
         await User.create(newUser);
-        console.log("New User Created");
-        console.log(newUser);
+        console.log("New User Created", newUser);
     } catch (error) {
         console.error(error);
+    } finally {
+        console.log("Attempt to create new user completed");
     }
 });

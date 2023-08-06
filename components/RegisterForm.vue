@@ -9,15 +9,15 @@ const form: Form = reactive({
     password: ""
 });
 
-const userFormSubmit = async () => {
+const userFormSubmit = async (): Promise<void> => {
     const { data: user } = await useFetch("/api/user", {
         method: "POST",
         body: {
             email: form.email,
             password: form.password
         }
-    })
-    console.log(user.value)
+    });
+    console.log(user.value);
 }
 </script>
 

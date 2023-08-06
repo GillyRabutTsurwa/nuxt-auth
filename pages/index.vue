@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { data } = useFetch("/api/session");
+console.log(data);
 </script>
 
 <template>
