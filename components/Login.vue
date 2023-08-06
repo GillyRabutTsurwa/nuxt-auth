@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const RegisterForm = resolveComponent("RegisterForm");
+const LoginForm = resolveComponent("LoginForm");
+const currentComponent = shallowRef(LoginForm);
 /**
  * NEW: using nuxt-auth's (really next-auth's) REST API to render dynamic provider login buttons
  * https://sidebase.io/nuxt-auth/server-side/rest-api very simple and abstract documentation
@@ -44,7 +47,17 @@ console.log(oauthProviders.value);
             <div class="bg-gray-500 h-[.125rem] w-full"></div>
           </div>
 
-          <Form />
+          <component :is="currentComponent" />
+          <p v-if="currentComponent.__name === 'LoginForm'" class="text-sm font-light text-gray-500 dark:text-gray-400">
+            Don’t have an account yet?
+            <a @click="currentComponent = RegisterForm"
+              class="font-medium text-primary-600 hover:underline dark:text-primary-500 cursor-pointer">Sign up</a>
+          </p>
+          <p v-else class="text-sm font-light text-gray-500 dark:text-gray-400">
+            Already Have an account?
+            <a @click="currentComponent = LoginForm"
+              class="font-medium text-primary-600 hover:underline dark:text-primary-500 cursor-pointer">Login</a>
+          </p>
         </div>
       </div>
     </div>

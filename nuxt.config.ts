@@ -14,6 +14,9 @@ export default defineNuxtConfig({
         auth: {
             secret: process.env.AUTH_SECRET,
         },
+        mongodb: {
+            uri: process.env.MONGODB_URI,
+        },
     },
     tailwindcss: {
         cssPath: "~/assets/css/main.css",

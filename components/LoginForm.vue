@@ -50,9 +50,9 @@ function userFormSubmit() {
       class="border border-gray-500 px-4 py-2 rounded-lg text-gray-500 text-sm font-medium hover:text-black hover:bg-gray-100">
       Sign in
     </button>
-    <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+    <!-- <p class="text-sm font-light text-gray-500 dark:text-gray-400">
       Don’t have an account yet?
       <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
-    </p>
+    </p> -->
   </form>
 </template>
